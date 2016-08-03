@@ -1,6 +1,22 @@
 import React, {PropTypes} from 'react';
-import AppTemplate from './templates/app.rt';
 import './assets/styles/app.styl';
+import News from '../news/News.jsx';
+import Comments from '../comments/Comments.jsx';
+
+var my_news = [
+    {
+        author: 'Саша Печкин',
+        text: 'В четверг, четвертого числа...'
+    },
+    {
+        author: 'Просто Вася',
+        text: 'Считаю, что $ должен стоить 35 рублей!'
+    },
+    {
+        author: 'Гость',
+        text: 'Бесплатно. Скачать. Лучший сайт - http://localhost:3000'
+    }
+];
 
 class App extends React.Component {
     constructor() {
@@ -8,7 +24,13 @@ class App extends React.Component {
     }
 
     render() {
-        return AppTemplate();
+        return (
+            <div className="app">
+                Всем привет, я компонент App! Я умею отображать новости.
+                <News data={my_news}/>
+                <Comments/>
+            </div>
+        );
     }
 }
 
