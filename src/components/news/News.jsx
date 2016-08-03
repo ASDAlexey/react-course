@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import './assets/styles/news.styl';
+import Article from '../article/Article.jsx';
 
 class News extends React.Component {
     constructor() {
@@ -10,8 +11,7 @@ class News extends React.Component {
         return data.map((item, index) => {
             return (
                 <div key={index}>
-                    <p className="news__author">{item.author}:</p>
-                    <p className="news__text">{item.text}</p>
+                    <Article data={item}/>
                 </div>
             )
         });
@@ -29,7 +29,8 @@ class News extends React.Component {
         const data = this.props.data;
         const newTemplate = (data.length > 0) ? News.getNewsTemplate(data) : News.getNotNewTemplate();
         const strongClass = classNames({
-            'none': data.length === 0
+            'none': data.length === 0,
+            'news__count': true,
         });
         return (
             <div className="news">
