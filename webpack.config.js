@@ -22,6 +22,13 @@ module.exports = {
             _: 'lodash',
             classNames: 'classNames',
         }),
+        // new CompressionPlugin({
+        //     asset: "[path].gz[query]",
+        //     algorithm: "gzip",
+        //     test: /\.css$|\.js$|\.html\.svg$/,
+        //     threshold: 10240,
+        //     minRatio: 0.8
+        // })
     ],
     module: {
         loaders: [
