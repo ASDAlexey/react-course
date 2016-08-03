@@ -6,6 +6,13 @@ class Article extends React.Component {
         super();
     }
 
+    static propTypes = {
+        data: PropTypes.shape({
+            author: React.PropTypes.string.isRequired,
+            text: React.PropTypes.string.isRequired
+        })
+    };
+
     render() {
         const author = this.props.data.author;
         const text = this.props.data.text;

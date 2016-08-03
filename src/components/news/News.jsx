@@ -7,6 +7,10 @@ class News extends React.Component {
         super();
     }
 
+    static propTypes = {
+        data: PropTypes.array.isRequired
+    };
+
     static getNewsTemplate(data) {
         return data.map((item, index) => {
             return (
