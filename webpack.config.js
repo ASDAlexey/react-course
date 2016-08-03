@@ -1,5 +1,5 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
     devtool: 'source-map',
@@ -7,38 +7,38 @@ module.exports = {
         main: [
             'webpack-dev-server/client?http://localhost:8080',
             'webpack/hot/only-dev-server',
-            './src/main.js'
-        ]
+            './src/main.jsx',
+        ],
     },
     output: {
         filename: '[name].js',
         path: path.join(__dirname, 'public'),
-        publicPath: '/public/'
+        publicPath: '/public/',
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
         new webpack.ProvidePlugin({
-            "_": "lodash",
-            "classNames": "classNames"
-        })
+            _: 'lodash',
+            classNames: 'classNames',
+        }),
     ],
     module: {
         loaders: [
             {
                 test: /\.jsx?$/,
                 include: path.join(__dirname, 'src'),
-                loader: 'react-hot!babel'
+                loader: 'react-hot!babel',
             },
             {
                 test: /\.css$/,
-                loader: 'style!css?sourceMap'
+                loader: 'style!css?sourceMap',
             },
             {
                 test: /\.styl$/,
                 exclude: /(node_modules|bower_components)/,
-                loader: 'style-loader!css-loader?sourceMap!postcss-loader!stylus?resolve url'
-            }
-        ]
-    }
+                loader: 'style-loader!css-loader?sourceMap!postcss-loader!stylus?resolve url',
+            },
+        ],
+    },
 };

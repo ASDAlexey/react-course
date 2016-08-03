@@ -1,10 +1,6 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 
 class Comments extends React.Component {
-    constructor() {
-        super();
-    }
-
     render() {
         return (
             <div className="news">

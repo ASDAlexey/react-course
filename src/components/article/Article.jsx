@@ -1,18 +1,14 @@
 import React, {PropTypes} from 'react';
 import './assets/styles/article.styl';
 
+const propTypes = {
+    data: PropTypes.shape({
+        author: React.PropTypes.string.isRequired,
+        text: React.PropTypes.string.isRequired,
+    }),
+};
+
 class Article extends React.Component {
-    constructor() {
-        super();
-    }
-
-    static propTypes = {
-        data: PropTypes.shape({
-            author: React.PropTypes.string.isRequired,
-            text: React.PropTypes.string.isRequired
-        })
-    };
-
     render() {
         const author = this.props.data.author;
         const text = this.props.data.text;
@@ -25,5 +21,7 @@ class Article extends React.Component {
         );
     }
 }
+
+Article.propTypes = propTypes;
 
 export default Article;

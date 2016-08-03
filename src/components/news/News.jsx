@@ -1,24 +1,19 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 import './assets/styles/news.styl';
 import Article from '../article/Article.jsx';
 
+const propTypes = {
+    data: PropTypes.array.isRequired,
+};
+
 class News extends React.Component {
-    constructor() {
-        super();
-    }
-
-    static propTypes = {
-        data: PropTypes.array.isRequired
-    };
-
     static getNewsTemplate(data) {
-        return data.map((item, index) => {
-            return (
+        return data.map((item, index) => (
                 <div key={index}>
-                    <Article data={item}/>
+                    <Article data={item} />
                 </div>
             )
-        });
+        );
     }
 
     static getNotNewTemplate() {
@@ -33,8 +28,8 @@ class News extends React.Component {
         const data = this.props.data;
         const newTemplate = (data.length > 0) ? News.getNewsTemplate(data) : News.getNotNewTemplate();
         const strongClass = classNames({
-            'none': data.length === 0,
-            'news__count': true,
+            none: data.length === 0,
+            news__count: true,
         });
         return (
             <div className="news">
@@ -44,5 +39,7 @@ class News extends React.Component {
         );
     }
 }
+
+Article.propTypes = propTypes;
 
 export default News;
