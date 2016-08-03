@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react';
 import './assets/styles/news.styl';
-import classNames from 'classnames';
 
 class News extends React.Component {
     constructor() {
