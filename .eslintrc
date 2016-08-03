@@ -5,6 +5,8 @@
     "node": true
   },
   "rules": {
+    "react/prefer-stateless-function": "off",
+    "react/jsx-indent": "off",
     "indent": [
       "error",
       4
