@@ -1,5 +1,5 @@
 # react-course
 
-Init project:
+* Init project:
 npm i
 sudo npm link webpack-dev-server
