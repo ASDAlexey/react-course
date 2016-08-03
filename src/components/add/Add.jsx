@@ -35,10 +35,14 @@ class Add extends React.Component {
     // }
 
     onFieldChange(e) {
-        console.log(e.target.name);
-        console.log(e.target.value);
-        if (e.target.value.trim().length > 0) this.setState({ ['' + e.target.name]: false });
-        else this.setState({ ['' + e.target.name]: true });
+        const value = e.target.value !== 'on' ? e.target.value : e.target.checked;
+        if (!_.isBoolean(value)) {
+            if (value.trim().length > 0) this.setState({ ['' + e.target.name]: false });
+            else this.setState({ ['' + e.target.name]: true });
+        } else {
+            if (value) this.setState({ ['' + e.target.name]: false });
+            else this.setState({ ['' + e.target.name]: true });
+        }
     }
 
     onBtnClickHandler(e) {
@@ -71,7 +75,7 @@ class Add extends React.Component {
                     className="add__text"
                     defaultValue=""
                     placeholder="Текст новости"
-                    name="testIsEmpty"
+                    name="textIsEmpty"
                     onChange={this.onFieldChange}
                     ref={ref => (this.refsData.text = ref)}
                 />
