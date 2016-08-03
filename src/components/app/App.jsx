@@ -2,7 +2,7 @@ import React from 'react';
 import './assets/styles/app.styl';
 import Add from '../add/Add.jsx';
 import News from '../news/News.jsx';
-import Comments from '../comments/Comments.jsx';
+// import Comments from '../comments/Comments.jsx';
 
 const myNews = [
     {
@@ -23,13 +23,29 @@ const myNews = [
 ];
 
 class App extends React.Component {
+    constructor() {
+        super();
+        this.state = { news: myNews };
+    }
+
+    componentDidMount() {
+        window.EventEmitter.addListener('News.add', (item) => {
+            const nextNews = item.concat(this.state.news);
+            this.setState({ news: nextNews });
+        });
+    }
+
+    componentWillUnmount() {
+        window.EventEmitter.removeListener('News.add');
+    }
+
     render() {
         return (
             <div className="app">
                 <h3>Новости</h3>
                 <Add />
-                <News data={myNews} />
-                <Comments />
+                <News data={this.state.news} />
+                {/*<Comments />*/}
             </div>
         );
     }

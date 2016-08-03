@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import events from 'events';
 import './assets/styles/add.styl';
+
+window.EventEmitter = new events.EventEmitter();
 
 const propTypes = {
     id: PropTypes.func,
@@ -51,8 +54,19 @@ class Add extends React.Component {
         // console.log(formData);
         e.preventDefault();
         const author = ReactDOM.findDOMNode(this.refsData.author).value;
-        const text = ReactDOM.findDOMNode(this.refsData.text).value;
+        const textEl = ReactDOM.findDOMNode(this.refsData.text);
+        const text = textEl.value;
         console.log(`${author}\n${text}`);
+        const item = [
+            {
+                author,
+                text,
+                bigText: '...',
+            },
+        ];
+        window.EventEmitter.emit('News.add', item);
+        textEl.value = '';
+        this.setState({ testIsEmpty: true });
     }
 
     render() {
