@@ -38,11 +38,7 @@ module.exports = {
                 test: /\.styl$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: 'style-loader!css-loader?sourceMap!postcss-loader!stylus?resolve url'
-            },
-            {
-                test: /\.rt/,
-                loader: "react-templates-loader"
-            },
+            }
         ]
     }
 };
