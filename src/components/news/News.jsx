@@ -40,6 +40,6 @@ class News extends React.Component {
     }
 }
 
-Article.propTypes = propTypes;
+News.propTypes = propTypes;
 
 export default News;
