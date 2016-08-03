@@ -1,5 +1,6 @@
 import React from 'react';
 import './assets/styles/app.styl';
+import Add from '../add/Add.jsx';
 import News from '../news/News.jsx';
 import Comments from '../comments/Comments.jsx';
 
@@ -26,6 +27,7 @@ class App extends React.Component {
         return (
             <div className="app">
                 <h3>Новости</h3>
+                <Add />
                 <News data={myNews} />
                 <Comments />
             </div>
