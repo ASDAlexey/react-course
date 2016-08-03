@@ -24,6 +24,11 @@ class News extends React.Component {
         );
     }
 
+    constructor() {
+        super();
+        this.state = { counter: 0 };
+    }
+
     render() {
         const data = this.props.data;
         const newTemplate = (data.length > 0) ? News.getNewsTemplate(data) : News.getNotNewTemplate();

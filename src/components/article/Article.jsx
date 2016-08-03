@@ -31,8 +31,7 @@ class Article extends React.Component {
             <div className="article">
                 <p className="news__author">{author}:</p>
                 <p className="news__text">{text}</p>
-                <button onClick={this.readmoreClick} className={`news__readmore ${visibleClass}`}>Подробнее
-                </button>
+                <button onClick={this.readmoreClick} className={`news__readmore ${visibleClass}`}>Подробнее</button>
                 <p className="news__big-text">{bigText}</p>
             </div>
         );
