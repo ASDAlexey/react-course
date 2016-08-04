@@ -1,9 +1,10 @@
 import React from 'react';
+import events from 'events';
 import './assets/styles/app.styl';
 import Add from '../add/Add.jsx';
 import News from '../news/News.jsx';
-// import Comments from '../comments/Comments.jsx';
 
+const EventEmitter = new events.EventEmitter();
 const myNews = [
     {
         author: 'Саша Печкин',
@@ -22,21 +23,29 @@ const myNews = [
     },
 ];
 
+const childContextTypes = {
+    EventEmitter: React.PropTypes.object,
+};
+
 class App extends React.Component {
     constructor() {
         super();
         this.state = { news: myNews };
     }
 
+    getChildContext() {
+        return { EventEmitter };
+    }
+
     componentDidMount() {
-        window.EventEmitter.addListener('News.add', (item) => {
+        EventEmitter.addListener('News.add', (item) => {
             const nextNews = item.concat(this.state.news);
             this.setState({ news: nextNews });
         });
     }
 
     componentWillUnmount() {
-        window.EventEmitter.removeListener('News.add');
+        EventEmitter.removeListener('News.add');
     }
 
     render() {
@@ -45,10 +54,10 @@ class App extends React.Component {
                 <h3>Новости</h3>
                 <Add />
                 <News data={this.state.news} />
-                {/*<Comments />*/}
             </div>
         );
     }
 }
 
+App.childContextTypes = childContextTypes;
 export default App;

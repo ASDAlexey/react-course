@@ -1,12 +1,13 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import events from 'events';
 import './assets/styles/add.styl';
-
-window.EventEmitter = new events.EventEmitter();
 
 const propTypes = {
     id: PropTypes.func,
+};
+
+const contextTypes = {
+    EventEmitter: React.PropTypes.object,
 };
 
 class Add extends React.Component {
@@ -50,7 +51,7 @@ class Add extends React.Component {
 
     onBtnClickHandler(e) {
         // e.preventDefault();
-        // const formData = _.compact(_.map(this.refsData, (el, key) => ({ [key]: ReactDOM.findDOMNode(el).value })));
+        const formData = _.compact(_.map(this.refsData, (el, key) => ({ [key]: ReactDOM.findDOMNode(el).value })));
         // console.log(formData);
         e.preventDefault();
         const author = ReactDOM.findDOMNode(this.refsData.author).value;
@@ -64,7 +65,7 @@ class Add extends React.Component {
                 bigText: '...',
             },
         ];
-        window.EventEmitter.emit('News.add', item);
+        this.context.EventEmitter.emit('News.add', item);
         textEl.value = '';
         this.setState({ testIsEmpty: true });
     }
@@ -106,7 +107,7 @@ class Add extends React.Component {
                 </label>
                 <button
                     className="add__btn"
-                    onClick={this.onBtnClickHandler}
+                    onClick={this.onBtnClickHandler.bind(this)}
                     disabled={agreeNotChecked || authorIsEmpty || textIsEmpty}
                 >
                     Показать alert
@@ -117,5 +118,6 @@ class Add extends React.Component {
 }
 
 Add.propTypes = propTypes;
+Add.contextTypes = contextTypes;
 
 export default Add;
