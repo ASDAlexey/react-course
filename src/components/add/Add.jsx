@@ -50,12 +50,14 @@ class Add extends React.Component {
     }
 
     onBtnClickHandler(e) {
-        // e.preventDefault();
-        const formData = _.compact(_.map(this.refsData, (el, key) => ({ [key]: ReactDOM.findDOMNode(el).value })));
-        // console.log(formData);
         e.preventDefault();
-        const author = ReactDOM.findDOMNode(this.refsData.author).value;
-        const textEl = ReactDOM.findDOMNode(this.refsData.text);
+        // const formData = _.map(this.refsData, (el, key) => {
+        //     const value = el.value !== 'on' ? el.value : el.checked;
+        //     return { [key]: value };
+        // });
+        // console.log(formData);
+        const author = this.refsData.author.value;
+        const textEl = this.refsData.text;
         const text = textEl.value;
         console.log(`${author}\n${text}`);
         const item = [
